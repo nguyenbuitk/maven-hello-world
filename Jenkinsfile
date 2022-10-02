@@ -16,13 +16,12 @@ pipeline {
 
         stage ('Build') {
             steps {
-                sh  'cd my-app'
-                sh  'mvn package'
-                sh  'java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App'
+                sh  'cd my-app && mvn package'
+                sh  'cd my-app && java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App'
             }
             post {
                 success {
-                    sh 'mvn clean --quiet'
+                    sh 'cd my-app && mvn clean --quiet'
                 }
             }
         }
